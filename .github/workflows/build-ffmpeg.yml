@@ -11,5 +11,24 @@ jobs:
       run: |
         sudo apt update -qq
         sudo apt install -y autopoint gperf intltool libtool-bin lzip python3-mako
+    - name: Cache build
+      uses: actions/cache@v4
+      with:
+        key: dep-cache
+        path: |
+          usr
+          tmp-gcc-i686-w64-mingw32.shared
+          .ccache
+        save-always: true
+    - name: Build dependencies
+      run: make -j4 gcc glib MXE_TARGETS='i686-w64-mingw32.shared'
+    - name: Build dependencies 2
+      run: make -j4 cc bzip2 gnutls lame libass libbluray libbs2b libcaca libvpx opencore-amr opus sdl2 speex theora vidstab vo-amrwbenc vorbis x264 xvidcore yasm zlib MXE_TARGETS='i686-w64-mingw32.shared'
     - name: Build ffmpeg
-      run: make -j 4 ffmpeg MXE_TARGETS='x86_64-w64-mingw32.static'
+      run: make -j4 ffmpeg MXE_TARGETS='i686-w64-mingw32.shared'
+    - name: Upload build
+      uses: actions/upload-artifact@v4
+      with:
+        name: ffmpeg-build
+        path: usr/i686-w64-mingw32.shared/bin
+        if-no-files-found: error
