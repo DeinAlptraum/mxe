@@ -1,0 +1,15 @@
+name: Build FFMPEG
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        sudo apt update -qq
+        sudo apt install -y autopoint gperf intltool libtool-bin lzip python3-mako
+    - name: Build ffmpeg
+      run: make -j 4 ffmpeg MXE_TARGETS='x86_64-w64-mingw32.static'
