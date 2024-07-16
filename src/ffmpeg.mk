@@ -49,7 +49,7 @@ define $(PKG)_BUILD
         --extra-cxxflags="-static -static-libgcc -static-libstdc++" \
         --extra-ldexeflags="-static -static-libgcc -static-libstdc++" \
         --enable-libass \
-        --extra-ldflags="-fstack-protector" \
+        --extra-ldflags="-fstack-protector -static-libgcc -static-libstdc++" \
         $($(PKG)_CONFIGURE_OPTS)
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' CXXFLAGS="-static-libgcc -static-libstdc++"
     $(MAKE) -C '$(BUILD_DIR)' -j 1 install
