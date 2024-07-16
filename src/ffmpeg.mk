@@ -51,6 +51,6 @@ define $(PKG)_BUILD
         --enable-libass \
         --extra-ldflags="-fstack-protector" \
         $($(PKG)_CONFIGURE_OPTS)
-    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' CXXFLAGS="-static-libgcc -static-libstdc++"
     $(MAKE) -C '$(BUILD_DIR)' -j 1 install
 endef
