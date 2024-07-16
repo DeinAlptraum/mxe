@@ -8,9 +8,9 @@ $(PKG)_CHECKSUM := 4426a94dd2c814945456600c8adfc402bee65ec14a70e8c531ec9a2cd651d
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://ffmpeg.org/releases/$($(PKG)_FILE)
-$(PKG)_DEPS     := cc bzip2 gnutls lame libass libbluray libbs2b libcaca \
-                   libvpx opencore-amr opus sdl2 speex theora vidstab \
-                   vo-amrwbenc vorbis x264 xvidcore yasm zlib
+$(PKG)_DEPS     := cc libass libbs2b libcaca \
+                   sdl2 vidstab \
+                   yasm zlib
 
 # DO NOT ADD fdk-aac OR openssl SUPPORT.
 # Although they are free softwares, their licenses are not compatible with
@@ -43,23 +43,10 @@ define $(PKG)_BUILD
         --enable-gpl \
         --enable-version3 \
         --extra-libs='-mconsole' \
-        --enable-gnutls \
         --enable-libass \
-        --enable-libbluray \
         --enable-libbs2b \
         --enable-libcaca \
-        --enable-libmp3lame \
-        --enable-libopencore-amrnb \
-        --enable-libopencore-amrwb \
-        --enable-libopus \
-        --enable-libspeex \
-        --enable-libtheora \
         --enable-libvidstab \
-        --enable-libvo-amrwbenc \
-        --enable-libvorbis \
-        --enable-libvpx \
-        --enable-libx264 \
-        --enable-libxvid \
         --extra-ldflags="-fstack-protector" \
         $($(PKG)_CONFIGURE_OPTS)
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'

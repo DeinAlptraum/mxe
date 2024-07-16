@@ -20,10 +20,6 @@ jobs:
           tmp-gcc-i686-w64-mingw32.shared
           .ccache
         save-always: true
-    - name: Build dependencies
-      run: make -j4 gcc glib MXE_TARGETS='i686-w64-mingw32.shared'
-    - name: Build dependencies 2
-      run: make -j4 cc bzip2 gnutls lame libass libbluray libbs2b libcaca libvpx opencore-amr opus sdl2 speex theora vidstab vo-amrwbenc vorbis x264 xvidcore yasm zlib MXE_TARGETS='i686-w64-mingw32.shared'
     - name: Build ffmpeg
       run: make -j4 ffmpeg MXE_TARGETS='i686-w64-mingw32.shared'
     - name: Upload build
