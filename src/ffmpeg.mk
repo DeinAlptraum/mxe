@@ -43,8 +43,11 @@ define $(PKG)_BUILD
         --enable-gpl \
         --enable-version3 \
         --extra-libs='-mconsole' \
-        --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib
+        --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib --disable-lzma
         --disable-ffserver --disable-avdevice --disable-doc --disable-ffplay --disable-ffprobe --disable-ffmpeg
+        --extra-cflags="-static -static-libgcc" \
+        --extra-cxxflags="-static -static-libgcc -static-libstdc++" \
+        --extra-ldexeflags="-static -static-libgcc -static-libstdc++" \
         --enable-libass \
         --extra-ldflags="-fstack-protector" \
         $($(PKG)_CONFIGURE_OPTS)
