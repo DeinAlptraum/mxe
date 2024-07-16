@@ -21,7 +21,10 @@ jobs:
           .ccache
         save-always: true
     - name: Build ffmpeg
-      run: make -j4 ffmpeg MXE_TARGETS='i686-w64-mingw32.shared'
+      run: |
+        export CFLAGS="${CFLAGS-} -static-libgcc"
+        export CXXFLAGS="${CXXFLAGS-} $CFLAGS -static-libstdc++"
+        make -j4 ffmpeg MXE_TARGETS='i686-w64-mingw32.shared'
     - name: Upload build
       uses: actions/upload-artifact@v4
       with:
