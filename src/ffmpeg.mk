@@ -10,7 +10,7 @@ $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://ffmpeg.org/releases/$($(PKG)_FILE)
 $(PKG)_DEPS     := cc libass \
                    sdl2 \
-                   yasm zlib
+                   yasm
 
 # DO NOT ADD fdk-aac OR openssl SUPPORT.
 # Although they are free softwares, their licenses are not compatible with
@@ -43,6 +43,7 @@ define $(PKG)_BUILD
         --enable-gpl \
         --enable-version3 \
         --extra-libs='-mconsole' \
+        --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib
         --enable-libass \
         --extra-ldflags="-fstack-protector" \
         $($(PKG)_CONFIGURE_OPTS)
