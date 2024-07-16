@@ -8,8 +8,8 @@ $(PKG)_CHECKSUM := 4426a94dd2c814945456600c8adfc402bee65ec14a70e8c531ec9a2cd651d
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://ffmpeg.org/releases/$($(PKG)_FILE)
-$(PKG)_DEPS     := cc libass libbs2b libcaca \
-                   sdl2 vidstab \
+$(PKG)_DEPS     := cc libass \
+                   sdl2 \
                    yasm zlib
 
 # DO NOT ADD fdk-aac OR openssl SUPPORT.
@@ -44,9 +44,6 @@ define $(PKG)_BUILD
         --enable-version3 \
         --extra-libs='-mconsole' \
         --enable-libass \
-        --enable-libbs2b \
-        --enable-libcaca \
-        --enable-libvidstab \
         --extra-ldflags="-fstack-protector" \
         $($(PKG)_CONFIGURE_OPTS)
     $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
