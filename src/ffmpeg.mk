@@ -44,6 +44,7 @@ define $(PKG)_BUILD
         --enable-version3 \
         --extra-libs='-mconsole' \
         --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib
+        --disable-ffserver --disable-avdevice --disable-doc --disable-ffplay --disable-ffprobe --disable-ffmpeg
         --enable-libass \
         --extra-ldflags="-fstack-protector" \
         $($(PKG)_CONFIGURE_OPTS)
