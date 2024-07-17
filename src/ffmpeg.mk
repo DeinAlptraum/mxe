@@ -45,7 +45,7 @@ define $(PKG)_BUILD
         --extra-libs='-mconsole' \
         --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib --disable-lzma \
         --disable-avdevice --disable-doc --disable-ffplay --disable-ffprobe --disable-ffmpeg \
-        --extra-cflags="-static -static-libgcc" \
+        --extra-cflags="-static-libgcc -static-libstdc++" \
         --extra-cxxflags="-static-libgcc -static-libstdc++" \
         --extra-ldexeflags="-static-libgcc -static-libstdc++" \
         --enable-libass \
