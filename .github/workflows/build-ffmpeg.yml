@@ -22,6 +22,13 @@ jobs:
         save-always: true
     - name: Build ffmpeg
       run: make -j4 ffmpeg MXE_TARGETS='i686-w64-mingw32.shared'
+    - name: Upload log
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ffmpeg-log
+        path: log/ffmpeg_i686-w64-mingw32.shared
+        if-no-files-found: error
     - name: Upload build
       uses: actions/upload-artifact@v4
       with:
