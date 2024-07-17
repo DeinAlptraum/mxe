@@ -46,11 +46,14 @@ define $(PKG)_BUILD
         --disable-bzlib --disable-libopenjpeg --disable-iconv --disable-zlib --disable-lzma
         --disable-ffserver --disable-avdevice --disable-doc --disable-ffplay --disable-ffprobe --disable-ffmpeg
         --extra-cflags="-static -static-libgcc" \
-        --extra-cxxflags="-static -static-libgcc -static-libstdc++" \
-        --extra-ldexeflags="-static -static-libgcc -static-libstdc++" \
+        --extra-cxxflags="-static-libgcc -static-libstdc++" \
+        --extra-ldexeflags="-static-libgcc -static-libstdc++" \
         --enable-libass \
         --extra-ldflags="-fstack-protector -static-libgcc -static-libstdc++" \
         $($(PKG)_CONFIGURE_OPTS)
-    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' CXXFLAGS="-static-libgcc -static-libstdc++"
-    $(MAKE) -C '$(BUILD_DIR)' -j 1 install
+        CFLAGS="-static-libgcc -static-libstdc++"
+        CXXFLAGS="-static-libgcc -static-libstdc++"
+        LDFLAGS="-static-libgcc -static-libstdc++"
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)' CFLAGS="-static-libgcc -static-libstdc++" CXXFLAGS="-static-libgcc -static-libstdc++" LDFLAGS="-static-libgcc -static-libstdc++"
+    $(MAKE) -C '$(BUILD_DIR)' -j 1 install CFLAGS="-static-libgcc -static-libstdc++" CXXFLAGS="-static-libgcc -static-libstdc++" LDFLAGS="-static-libgcc -static-libstdc++"
 endef
